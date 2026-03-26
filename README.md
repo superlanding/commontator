@@ -22,12 +22,10 @@ Follow the steps below to install Commontator:
   gem 'commontator'
   ```
 
-  You will also need jquery and a sass compiler, which can be either be installed through
-  the webpacker gem and yarn/npm/bower or through the jquery-rails and sass[c]-rails gems:
+  You will also need jquery and a sass compiler in your frontend setup:
 
   ```rb
   gem 'jquery-rails'
-  gem 'sassc-rails'
   ```
 
   Then execute:
@@ -82,53 +80,21 @@ Follow the steps below to install Commontator:
 ### Assets
 
 Commontator no longer requires Sprockets as a runtime dependency.
-If your app uses Sprockets, follow the steps below.
+Include Commontator assets using your app's frontend pipeline:
 
-1. Javascripts
+1. JavaScript
 
-  Make sure your application.js requires jquery and rails-ujs or jquery-ujs:
-
-  Rails 5.1+:
-  ```js
-  //= require jquery
-  //= require rails-ujs
-  ```
-
-  Rails 5.0:
-  ```js
-  //= require jquery
-  // If jquery-ujs was installed through jquery-rails
-  //= require jquery_ujs
-  // If jquery-ujs was installed through webpacker and yarn/npm/bower
-  //= require jquery-ujs
-  ```
-
-  If using Commontator's mentions functionality, also require Commontator's application.js:
-
-  ```js
-  //= require commontator/application
-  ```
+  - `app/assets/javascripts/commontator/mentions.js`
+  - (optional mentions support) `vendor/assets/javascripts/underscore/underscore.js`
+  - (optional mentions support) `vendor/assets/javascripts/mentionsInput/jquery.mentionsInput.js`
 
 2. Stylesheets
 
-  In order to display comment threads properly, you must
-  require Commontator's application.scss in your `application.[s]css`:
+  - `app/assets/stylesheets/commontator/application.scss`
+  - (optional mentions support) `vendor/assets/stylesheets/mentionsInput/jquery.mentionsInput.css`
 
-  ```css
-  *= require commontator/application
-  ```
-
-#### Sprockets 4+
-
-  You must require Commontator's manifest.js in your app's manifest.js for images to work properly:
-
-  ```js
-  //= link commontator/manifest.js
-  ```
-
-  You also need to either add the necessary link tag commands to your layout to load
-  commontator/application.js and commontator/application.css or require them in your app's
-  application.js and application.css like in Sprockets 3.
+If you are upgrading from an older version that used Sprockets directives, migrate those
+directives to equivalent imports/includes in your JS and CSS build pipeline.
 
 ## Usage
 

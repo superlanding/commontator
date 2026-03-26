@@ -7,10 +7,4 @@ class Commontator::Engine < ::Rails::Engine
   # but still cause issues in Rails 7 if autoloaded in an initializer
   # To fix this, make sure they are autoloaded only once
   config.autoload_once_paths = config.autoload_paths + config.eager_load_paths
-
-  initializer 'commontator.assets' do |app|
-    next unless app.config.respond_to?(:assets)
-
-    app.config.assets.precompile += [ 'commontator/*.png' ]
-  end
 end

@@ -1,8 +1,4 @@
-/*
- *= require mentionsInput/jquery.mentionsInput
- *= require_self
- *= require_tree .
- */
+@import 'comments';
 
 .commontator {
   *:not(input):not(textarea) {
