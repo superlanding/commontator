@@ -81,6 +81,9 @@ Follow the steps below to install Commontator:
 
 ### Assets
 
+Commontator no longer requires Sprockets as a runtime dependency.
+If your app uses Sprockets, follow the steps below.
+
 1. Javascripts
 
   Make sure your application.js requires jquery and rails-ujs or jquery-ujs:

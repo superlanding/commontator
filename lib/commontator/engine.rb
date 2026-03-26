@@ -1,5 +1,4 @@
 require 'commontator'
-require 'sprockets/railtie'
 
 class Commontator::Engine < ::Rails::Engine
   isolate_namespace Commontator
@@ -9,5 +8,9 @@ class Commontator::Engine < ::Rails::Engine
   # To fix this, make sure they are autoloaded only once
   config.autoload_once_paths = config.autoload_paths + config.eager_load_paths
 
-  config.assets.precompile += [ 'commontator/*.png' ]
+  initializer 'commontator.assets' do |app|
+    next unless app.config.respond_to?(:assets)
+
+    app.config.assets.precompile += [ 'commontator/*.png' ]
+  end
 end
