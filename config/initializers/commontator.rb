@@ -115,6 +115,8 @@ Commontator.configure do |config|
   #          If using pagination, it can also cause comments to change pages
   # Default: nil (no filtering - all comments are visible)
   config.comment_filter = nil
+  # On Rails 8 / Zeitwerk, prefer Arel::Table.new(:commontator_comments)[:body]...
+  # instead of Commontator::Comment.arel_table[...] inside this initializer.
 
   # thread_read_proc
   # Type: Proc

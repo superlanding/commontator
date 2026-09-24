@@ -14,6 +14,8 @@ Gem::Specification.new do |gem|
   gem.summary     = 'Allows users to comment on any model in your application.'
   gem.description = 'A Rails engine for comments.'
 
+  gem.required_ruby_version = '>= 2.7'
+
   gem.files = Dir['{app,config,db,lib,vendor}/**/*'] + [ 'MIT-LICENSE', 'README.md' ]
 
   gem.add_dependency 'rails', '>= 6.0'

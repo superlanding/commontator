@@ -27,3 +27,6 @@ gem 'pg', require: false
 # Code coverage
 gem 'codeclimate-test-reporter', require: false
 gem 'simplecov',                 require: false
+
+# json 3.x removed quirks_mode; AS 8.0.x JSON encoder still passes it
+gem 'json', '~> 2.7'
