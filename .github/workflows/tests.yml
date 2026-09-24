@@ -10,7 +10,7 @@ on:
 jobs:
   tests:
     timeout-minutes: 30
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:13
@@ -26,16 +26,23 @@ jobs:
           POSTGRES_DB: ci_test
           POSTGRES_PASSWORD: postgres
     strategy:
+      fail-fast: false
       matrix:
         include:
-          - RUBY_VERSION: 3.1
-            RAILS_VERSION: 7.0.1
           - RUBY_VERSION: 2.7
             RAILS_VERSION: 6.1.4.4
+          - RUBY_VERSION: 3.1
+            RAILS_VERSION: 7.0.1
+          - RUBY_VERSION: 3.3.12
+            RAILS_VERSION: 7.2.3.2
+          - RUBY_VERSION: 3.3.12
+            RAILS_VERSION: 8.0.5.1
+          - RUBY_VERSION: 3.4.11
+            RAILS_VERSION: 8.0.5.1
     env:
       RAILS_VERSION: ${{ matrix.RAILS_VERSION }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.RUBY_VERSION }}

@@ -41,5 +41,7 @@ Commontator.configure do |config|
     'DummyUser'.include?(query) ? DummyUser.all : DummyUser.none
   end
 
-  config.comment_filter = Commontator::Comment.arel_table[:body].does_not_match('%hidden%')
+  # Avoid referencing Commontator::Comment during initializer boot (Rails 8 / Zeitwerk).
+  # Equivalent to Commontator::Comment.arel_table[:body].does_not_match('%hidden%')
+  config.comment_filter = Arel::Table.new(:commontator_comments)[:body].does_not_match('%hidden%')
 end

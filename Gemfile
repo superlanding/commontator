@@ -20,10 +20,22 @@ gem *[ 'rails', ENV['RAILS_VERSION'] ].compact
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Database adapters
-gem 'sqlite3', require: false
+# sqlite3 2.x needs Rails >= 7.1; keep 1.4 for 6.1/7.0 matrix cells
+rails_for_sqlite = Gem::Version.new(ENV.fetch('RAILS_VERSION', '8.0'))
+if rails_for_sqlite >= Gem::Version.new('7.1')
+  gem 'sqlite3', '~> 2.0', require: false
+else
+  gem 'sqlite3', '~> 1.4', require: false
+end
 gem 'mysql2', require: false
 gem 'pg', require: false
 
 # Code coverage
 gem 'codeclimate-test-reporter', require: false
 gem 'simplecov',                 require: false
+
+# json 3.x removed quirks_mode; AS 8.0.x JSON encoder still passes it
+gem 'json', '~> 2.7'
+
+# concurrent-ruby 1.3.5+ breaks Rails < 7.1 (LoggerThreadSafeLevel::Logger)
+gem 'concurrent-ruby', '1.3.4'
