@@ -30,3 +30,6 @@ gem 'simplecov',                 require: false
 
 # json 3.x removed quirks_mode; AS 8.0.x JSON encoder still passes it
 gem 'json', '~> 2.7'
+
+# concurrent-ruby 1.3.5+ breaks Rails < 7.1 (LoggerThreadSafeLevel::Logger)
+gem 'concurrent-ruby', '1.3.4'
